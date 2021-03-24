@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="76c0913059e14c9e821f198edae4697c" Name="Diagram1">
+        <EntityTypeShape EntityType="SVS2Model.Dalykas7" Width="1.5" PointX="2.5" PointY="6.625" />
+        <EntityTypeShape EntityType="SVS2Model.Grupe_6" Width="1.5" PointX="0.5" PointY="2.875" />
+        <EntityTypeShape EntityType="SVS2Model.Pazimys6" Width="1.5" PointX="5" PointY="2.375" />
+        <EntityTypeShape EntityType="SVS2Model.Studentas6" Width="1.5" PointX="2.75" PointY="1.125" />
+        <EntityTypeShape EntityType="SVS2Model.SVSAdmin" Width="1.5" PointX="5.5" PointY="6.5" />
+        <EntityTypeShape EntityType="SVS2Model.SVSDestytojas" Width="1.5" PointX="7.5" PointY="0.5" />
+        <EntityTypeShape EntityType="SVS2Model.SvsStudentas2" Width="1.5" PointX="7.5" PointY="3.5" />
+        <AssociationConnector Association="SVS2Model.FK_Dalykas7_Grupe_6" />
+        <AssociationConnector Association="SVS2Model.FK_Pazimys6_Dalykas7" />
+        <AssociationConnector Association="SVS2Model.FK_Studentas6_Grupe_6" />
+        <AssociationConnector Association="SVS2Model.FK_Pazimys6_Studentas6" />
+        <EntityTypeShape EntityType="SVS2Model.Destytojas_4" Width="1.5" PointX="8.375" PointY="6.75" />
+      </Diagram>
+      <Diagram DiagramId="b3ced7b3fdb94feea155ff45f82ada5f" Name="Diagram2" >
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

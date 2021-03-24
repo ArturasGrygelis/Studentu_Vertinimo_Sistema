@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SVS2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dalykas7">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dalyko_Pavadinimas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Grupes_ID" Type="int" />
+          <Property Name="Destytojo_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Destytojas_4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Destytojo_Vardas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destytojo_Pavarde" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destytojo_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Destytojas3">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Destytojo_Vardas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destytojo_Pavarde" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grupe_6">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grupes_Pavadinimas" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pazimys6">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dalyko_ID" Type="int" Nullable="false" />
+          <Property Name="Studento_ID" Type="int" Nullable="false" />
+          <Property Name="Ivertinimas" Type="int" Nullable="false" />
+          <Property Name="Komentaras" Type="varchar" MaxLength="50" />
+          <Property Name="Destytojo_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Studentas6">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Studento_Vardas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Studento_Pavardė" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Studento_GrupesNr" Type="int" Nullable="false" />
+          <Property Name="Studento_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="SVSAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Prisijungimo_Vardas" Type="nvarchar(max)" />
+          <Property Name="Slaptazodis" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SVSDestytojas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Destytojo_Slapyvardis" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destytojo_Slaptazodis" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SvsStudentas2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Studento_Slapyvardis" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Studento_Slaptazodis" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dalykas7_Grupe_6">
+          <End Role="Grupe_6" Type="Self.Grupe_6" Multiplicity="0..1" />
+          <End Role="Dalykas7" Type="Self.Dalykas7" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupe_6">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dalykas7">
+              <PropertyRef Name="Grupes_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pazimys6_Dalykas7">
+          <End Role="Dalykas7" Type="Self.Dalykas7" Multiplicity="1" />
+          <End Role="Pazimys6" Type="Self.Pazimys6" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dalykas7">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pazimys6">
+              <PropertyRef Name="Dalyko_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pazimys6_Studentas6">
+          <End Role="Studentas6" Type="Self.Studentas6" Multiplicity="1" />
+          <End Role="Pazimys6" Type="Self.Pazimys6" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentas6">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pazimys6">
+              <PropertyRef Name="Studento_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Studentas6_Grupe_6">
+          <End Role="Grupe_6" Type="Self.Grupe_6" Multiplicity="1" />
+          <End Role="Studentas6" Type="Self.Studentas6" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupe_6">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Studentas6">
+              <PropertyRef Name="Studento_GrupesNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SVS2ModelStoreContainer">
+          <EntitySet Name="Dalykas7" EntityType="Self.Dalykas7" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Destytojas_4" EntityType="Self.Destytojas_4" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Destytojas3" EntityType="Self.Destytojas3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupe_6" EntityType="Self.Grupe_6" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pazimys6" EntityType="Self.Pazimys6" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Studentas6" EntityType="Self.Studentas6" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SVSAdmin" EntityType="Self.SVSAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SVSDestytojas" EntityType="Self.SVSDestytojas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SvsStudentas2" EntityType="Self.SvsStudentas2" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Dalykas7_Grupe_6" Association="Self.FK_Dalykas7_Grupe_6">
+            <End Role="Grupe_6" EntitySet="Grupe_6" />
+            <End Role="Dalykas7" EntitySet="Dalykas7" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pazimys6_Dalykas7" Association="Self.FK_Pazimys6_Dalykas7">
+            <End Role="Dalykas7" EntitySet="Dalykas7" />
+            <End Role="Pazimys6" EntitySet="Pazimys6" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pazimys6_Studentas6" Association="Self.FK_Pazimys6_Studentas6">
+            <End Role="Studentas6" EntitySet="Studentas6" />
+            <End Role="Pazimys6" EntitySet="Pazimys6" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Studentas6_Grupe_6" Association="Self.FK_Studentas6_Grupe_6">
+            <End Role="Grupe_6" EntitySet="Grupe_6" />
+            <End Role="Studentas6" EntitySet="Studentas6" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SVS2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SVS2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dalykas7" EntityType="SVS2Model.Dalykas7" />
+          <EntitySet Name="Grupe_6" EntityType="SVS2Model.Grupe_6" />
+          <EntitySet Name="Pazimys6" EntityType="SVS2Model.Pazimys6" />
+          <EntitySet Name="Studentas6" EntityType="SVS2Model.Studentas6" />
+          <EntitySet Name="SVSAdmin" EntityType="SVS2Model.SVSAdmin" />
+          <EntitySet Name="SVSDestytojas" EntityType="SVS2Model.SVSDestytojas" />
+          <EntitySet Name="SvsStudentas2" EntityType="SVS2Model.SvsStudentas2" />
+          <AssociationSet Name="FK_Dalykas7_Grupe_6" Association="SVS2Model.FK_Dalykas7_Grupe_6">
+            <End Role="Grupe_6" EntitySet="Grupe_6" />
+            <End Role="Dalykas7" EntitySet="Dalykas7" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pazimys6_Dalykas7" Association="SVS2Model.FK_Pazimys6_Dalykas7">
+            <End Role="Dalykas7" EntitySet="Dalykas7" />
+            <End Role="Pazimys6" EntitySet="Pazimys6" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Studentas6_Grupe_6" Association="SVS2Model.FK_Studentas6_Grupe_6">
+            <End Role="Grupe_6" EntitySet="Grupe_6" />
+            <End Role="Studentas6" EntitySet="Studentas6" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pazimys6_Studentas6" Association="SVS2Model.FK_Pazimys6_Studentas6">
+            <End Role="Studentas6" EntitySet="Studentas6" />
+            <End Role="Pazimys6" EntitySet="Pazimys6" />
+          </AssociationSet>
+          <EntitySet Name="Destytojas_4" EntityType="SVS2Model.Destytojas_4" />
+        </EntityContainer>
+        <EntityType Name="Dalykas7">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dalyko_Pavadinimas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Grupes_ID" Type="Int32" />
+          <Property Name="Destytojo_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grupe_6" Relationship="SVS2Model.FK_Dalykas7_Grupe_6" FromRole="Dalykas7" ToRole="Grupe_6" />
+          <NavigationProperty Name="Pazimys6" Relationship="SVS2Model.FK_Pazimys6_Dalykas7" FromRole="Dalykas7" ToRole="Pazimys6" />
+        </EntityType>
+        <EntityType Name="Grupe_6">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grupes_Pavadinimas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dalykas7" Relationship="SVS2Model.FK_Dalykas7_Grupe_6" FromRole="Grupe_6" ToRole="Dalykas7" />
+          <NavigationProperty Name="Studentas6" Relationship="SVS2Model.FK_Studentas6_Grupe_6" FromRole="Grupe_6" ToRole="Studentas6" />
+        </EntityType>
+        <EntityType Name="Pazimys6">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dalyko_ID" Type="Int32" Nullable="false" />
+          <Property Name="Studento_ID" Type="Int32" Nullable="false" />
+          <Property Name="Ivertinimas" Type="Int32" Nullable="false" />
+          <Property Name="Komentaras" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Destytojo_ID" Type="Int32" />
+          <NavigationProperty Name="Dalykas7" Relationship="SVS2Model.FK_Pazimys6_Dalykas7" FromRole="Pazimys6" ToRole="Dalykas7" />
+          <NavigationProperty Name="Studentas6" Relationship="SVS2Model.FK_Pazimys6_Studentas6" FromRole="Pazimys6" ToRole="Studentas6" />
+        </EntityType>
+        <EntityType Name="Studentas6">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Studento_Vardas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Studento_Pavardė" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Studento_GrupesNr" Type="Int32" Nullable="false" />
+          <Property Name="Studento_ID" Type="Int32" />
+          <NavigationProperty Name="Grupe_6" Relationship="SVS2Model.FK_Studentas6_Grupe_6" FromRole="Studentas6" ToRole="Grupe_6" />
+          <NavigationProperty Name="Pazimys6" Relationship="SVS2Model.FK_Pazimys6_Studentas6" FromRole="Studentas6" ToRole="Pazimys6" />
+        </EntityType>
+        <EntityType Name="SVSAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Prisijungimo_Vardas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Slaptazodis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SVSDestytojas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Destytojo_Slapyvardis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Destytojo_Slaptazodis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SvsStudentas2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Studento_Slapyvardis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Studento_Slaptazodis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Dalykas7_Grupe_6">
+          <End Type="SVS2Model.Grupe_6" Role="Grupe_6" Multiplicity="0..1" />
+          <End Type="SVS2Model.Dalykas7" Role="Dalykas7" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupe_6">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dalykas7">
+              <PropertyRef Name="Grupes_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pazimys6_Dalykas7">
+          <End Type="SVS2Model.Dalykas7" Role="Dalykas7" Multiplicity="1" />
+          <End Type="SVS2Model.Pazimys6" Role="Pazimys6" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dalykas7">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pazimys6">
+              <PropertyRef Name="Dalyko_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Studentas6_Grupe_6">
+          <End Type="SVS2Model.Grupe_6" Role="Grupe_6" Multiplicity="1" />
+          <End Type="SVS2Model.Studentas6" Role="Studentas6" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupe_6">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Studentas6">
+              <PropertyRef Name="Studento_GrupesNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pazimys6_Studentas6">
+          <End Type="SVS2Model.Studentas6" Role="Studentas6" Multiplicity="1" />
+          <End Type="SVS2Model.Pazimys6" Role="Pazimys6" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentas6">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pazimys6">
+              <PropertyRef Name="Studento_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Destytojas_4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Destytojo_Vardas" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Destytojo_Pavarde" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Destytojo_ID" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SVS2ModelStoreContainer" CdmEntityContainer="SVS2Entities">
+          <EntitySetMapping Name="Dalykas7">
+            <EntityTypeMapping TypeName="SVS2Model.Dalykas7">
+              <MappingFragment StoreEntitySet="Dalykas7">
+                <ScalarProperty Name="Destytojo_ID" ColumnName="Destytojo_ID" />
+                <ScalarProperty Name="Grupes_ID" ColumnName="Grupes_ID" />
+                <ScalarProperty Name="Dalyko_Pavadinimas" ColumnName="Dalyko_Pavadinimas" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupe_6">
+            <EntityTypeMapping TypeName="SVS2Model.Grupe_6">
+              <MappingFragment StoreEntitySet="Grupe_6">
+                <ScalarProperty Name="Grupes_Pavadinimas" ColumnName="Grupes_Pavadinimas" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pazimys6">
+            <EntityTypeMapping TypeName="SVS2Model.Pazimys6">
+              <MappingFragment StoreEntitySet="Pazimys6">
+                <ScalarProperty Name="Destytojo_ID" ColumnName="Destytojo_ID" />
+                <ScalarProperty Name="Komentaras" ColumnName="Komentaras" />
+                <ScalarProperty Name="Ivertinimas" ColumnName="Ivertinimas" />
+                <ScalarProperty Name="Studento_ID" ColumnName="Studento_ID" />
+                <ScalarProperty Name="Dalyko_ID" ColumnName="Dalyko_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Studentas6">
+            <EntityTypeMapping TypeName="SVS2Model.Studentas6">
+              <MappingFragment StoreEntitySet="Studentas6">
+                <ScalarProperty Name="Studento_ID" ColumnName="Studento_ID" />
+                <ScalarProperty Name="Studento_GrupesNr" ColumnName="Studento_GrupesNr" />
+                <ScalarProperty Name="Studento_Pavardė" ColumnName="Studento_Pavardė" />
+                <ScalarProperty Name="Studento_Vardas" ColumnName="Studento_Vardas" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SVSAdmin">
+            <EntityTypeMapping TypeName="SVS2Model.SVSAdmin">
+              <MappingFragment StoreEntitySet="SVSAdmin">
+                <ScalarProperty Name="Slaptazodis" ColumnName="Slaptazodis" />
+                <ScalarProperty Name="Prisijungimo_Vardas" ColumnName="Prisijungimo_Vardas" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SVSDestytojas">
+            <EntityTypeMapping TypeName="SVS2Model.SVSDestytojas">
+              <MappingFragment StoreEntitySet="SVSDestytojas">
+                <ScalarProperty Name="Destytojo_Slaptazodis" ColumnName="Destytojo_Slaptazodis" />
+                <ScalarProperty Name="Destytojo_Slapyvardis" ColumnName="Destytojo_Slapyvardis" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SvsStudentas2">
+            <EntityTypeMapping TypeName="SVS2Model.SvsStudentas2">
+              <MappingFragment StoreEntitySet="SvsStudentas2">
+                <ScalarProperty Name="Studento_Slaptazodis" ColumnName="Studento_Slaptazodis" />
+                <ScalarProperty Name="Studento_Slapyvardis" ColumnName="Studento_Slapyvardis" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Destytojas_4">
+            <EntityTypeMapping TypeName="SVS2Model.Destytojas_4">
+              <MappingFragment StoreEntitySet="Destytojas_4">
+                <ScalarProperty Name="Destytojo_ID" ColumnName="Destytojo_ID" />
+                <ScalarProperty Name="Destytojo_Pavarde" ColumnName="Destytojo_Pavarde" />
+                <ScalarProperty Name="Destytojo_Vardas" ColumnName="Destytojo_Vardas" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
